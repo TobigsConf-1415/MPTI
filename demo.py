@@ -1,45 +1,50 @@
 import os
 import sys
-import pickle
-import threading
-import time
-import datetime
-from flask import Flask, request, jsonify
-import torch
-import torch.nn.functional as F
-from train_ironman import SPECIAL_TOKENS, build_input_from_segments, add_special_tokens_
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
+import argparse
 import re
 import pandas as pd
 from numpy import argmax
+
+import torch
+import torch.nn.functional as F
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-
+from train_ironman import SPECIAL_TOKENS, build_input_from_segments, add_special_tokens_
+from utils import load, save, nameFromDB, toResponse, EOS, WELCOME, REGISTER, CAPITAL, PERSONALTXT
 from DialogRPT.src.dialogRPT import getIntegrated
-sherlockModel = getIntegrated()
-EOS = "<|endoftext|>"
 
-def load(filename):
-    if not os.path.exists(filename):
-        return {}
-    with open(filename, 'rb') as handle:
-        return pickle.load(handle)
+from flask import Flask, request
+app = Flask(__name__)
 
-def get_from_db(uid):
-    if uid not in db:
-        return (None, None)
-    return db[uid]
 
-def response_sherlock(inputs: str, name = "Jinkyoung", history = ""):
-    params = {'topk':3, 'beam': 3, 'topp': 0.8, 'max_t':15}
+def response_sherlock(inputs: str, params, name = "NoName", history = ""):
     history += inputs+ EOS
     if (history.count(EOS) > 4):
         history = history.split(EOS, maxsplit = 2)[-1]
-    final, prob_gen, score_ranker, hyp = sherlockModel.predict(history, 0.4, params)[0]
+    final, prob_gen, score_ranker, hyp = sherlockModel.predict(history, args.wt_ranker, params)[0]
     sherlock = hyp.replace("<NAME>", name)
     history += sherlock + EOS
     return sherlock, history
+
+@app.route("/sherlock", methods=["POST"])
+def sherlock():
+	req = request.get_json()
+	inputs = req["userRequest"]["utterance"]
+	kakaoid = req["userRequest"]["user"]["id"]
+	if inputs.startswith("!register"):
+		name = inputs.split(" ")[-1]
+		db[kakaoid] = (name, "")
+		output = WELCOME.format(name)
+	else:
+		name, history = nameFromDB(db, kakaoid)
+		if name==None:
+			output = REGISTER
+		else:
+			output, history = response_sherlock(inputs, params, name, history)
+			db[kakaoid] = (name, history)
+	return toResponse(output)
     
     
 # for ironman
@@ -93,28 +98,8 @@ tokenizer_ironman = GPT2Tokenizer.from_pretrained('default_gpt2')
 model_ironman = GPT2LMHeadModel.from_pretrained('default_gpt2')
 model_ironman.to("cuda")
 add_special_tokens_(model_ironman, tokenizer_ironman)
-personality_text = [
-        'my name is tony stark .',
-        'i am iron man .',
-        'i am a billionaire industrialist .',
-        'i am a superhero .',
-        'i have a daughter named morgan .',
-        'i had saved the world countless times .',
-        'i like American cheeseburger .',
-        'i am married with pepper potts .',
-        'i killed thanos .', 
-        'i am a genius .', 
-        'i own the stark industries .', 
-        'i programmed JARVIS .',
-        'i put on my armored suit to protect the world as Iron Man .',
-        'i was born on may 29, 1970 .' , 
-        'i am a genius inventor .',
-        'i was born in manhattan, new york .', 
-        'my father is howard stark .', 
-        'i am the founding member of the Avengers .'
-        'i love to be the center of attention .' 
-    ]
-personality = [tokenizer_ironman.encode(text) for text in personality_text]
+
+personality = [tokenizer_ironman.encode(text) for text in PERSONALTXT]
 rule_based_df = pd.read_json('rule_based_df.json')
 vectorizer = TfidfVectorizer()
 tfidf = vectorizer.fit_transform(rule_based_df['question']).toarray()
@@ -131,23 +116,6 @@ def response_ironman(inputs: str):
         with torch.no_grad():
             out_ids = sample_sequence(personality, history, tokenizer_ironman, model_ironman)
         
-        capital = {'i': 'I', "i'll": "I'll", "i'm": "I'm", "i'd": "I'd", "i've":"I've",
-           'tony': 'Tony',
-           'morgan': 'Morgan',
-           'pepper': 'Pepper',
-           'potts': 'Potts',
-           'ironman': 'Ironman', 'iron': 'Iron',
-           'stark': 'Stark',
-           'avengers': 'Avengers', 
-           'thanos':'Thanos',
-           'jarvis': 'JARVIS',
-           'manhattan':'Manhattan',
-           'new':'New','york':'York',
-           'california':'California',
-           'usa':'USA',
-           'howard':'Howard',
-           'may':'May',
-           }
         response = tokenizer_ironman.decode(out_ids, skip_special_tokens=True)
         response = re.split("([.?!’”]) ", response)
         response = [response[i-1] + response[i] for i in range(1, len(response), 2)] + [response[-1]]
@@ -157,114 +125,40 @@ def response_ironman(inputs: str):
             punc = ''
             if word.endswith(('.', '!','?')):
                 punc = word[-1]; word = word[:-1]
-            if word in capital.keys():
-                response_fin.append(capital[word])
+            if word in CAPITAL.keys():
+                response_fin.append(CAPITAL[word])
             else: response_fin.append(word)
             response_fin.append(punc)
             
         return re.sub(r' (?=\W)', '', ' '.join(response_fin))
 
-
-
-app = Flask(__name__)
-
-@app.route("/", methods=["GET", "POST"])
-def home():
-	return "snubob api server"
-
-@app.route("/hello", methods=['POST'])
-def hello():
-	msg = "TEST_hello."
-	req = request.get_json()
-	res = {
-    "version": "2.0",
-    "template": {
-        "outputs": [
-            {
-                "simpleText": {
-                    "text": msg               }
-            }
-        ]
-    }
-}
-	return jsonify(res)
-
-@app.route("/sherlock", methods=["POST"])
-def sherlock():
-	msg = "This is Sherlock Holmes."
-	req = request.get_json()
-	inputs = req["userRequest"]["utterance"]
-	kakaoid = req["userRequest"]["user"]["id"]
-	if inputs.startswith("!register"):
-		name = inputs.split(" ")[-1]
-		db[kakaoid] = (name, "")
-		output = "Welcome to MPTI-Sherlock Chatbot, {}🙌 Enjoy your chatting with the great Sherlock Holmes. \n\n❗️Please Do not enter your personal information as recent conversation records are saved in the server.❗️".format(name)
-	else:
-		name, history = get_from_db(kakaoid)
-		if name==None:
-			output = "Please register your name first. 🧐\nYou can regiser your name with command🙏: !register [YOUR NAME HERE]"
-		else:
-			output, history = response_sherlock(inputs, name, history)
-# 			print(history)
-			db[kakaoid] = (name, history)
-	res2 = {
-    "version": "2.0",
-    "template": {
-        "outputs": [
-            {
-                "simpleText": {
-                    "text": output
-                }
-            }
-        ]
-    }
-}
-	return  jsonify(res2)
-
 @app.route("/ironman", methods=["POST"])
 def ironman():
-	msg = "I am Iron Man."
 	req = request.get_json()
 	inputs = req["userRequest"]["utterance"]
-# 	kakaoid = req["userRequest"]["user"]["id"]
-# 	if not get_from_db(kakaoid)[0]:
-# 		name = input("Welcome to MPTI-Ironman Chatbot🙌 Enjoy your chatting with Ironman. \n\n❗️Please register your name first. Enter your name.")
-# 		history = ""
-# 		db_ironman[kakaoid] = (name, history)
-# 	else:
-# 		history = get_from_db(kakaoid)[1]
-# 		history = json.loads(history)
-# 		history.append(tokenizer.encode(inputs))
-# 	output = response_ironman(str(history))
 	output = response_ironman(inputs)
-	res = {
-    "version": "2.0",
-    "template": {
-        "outputs": [
-            {
-                "simpleText": {
-                    "text": output
-                }
-            }
-        ]
-    }
-}
-	return  jsonify(res)
-
-# @app.route("/save", methods=["POST", "GET"])
-def save(filename):
-    now_time = '({})'.format(datetime.datetime.now().strftime('%y/%m/%d %H:%M:%S'))
-    output = now_time + " !!!!!!Something is Wrong!!!!!!"
-    with open(filename, 'wb') as handle:
-        pickle.dump(db, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        output = now_time + " Successfully Saved "+filename
-    print(output)
-    threading.Timer(600, save, args = [filename]).start()
+	return toResponse(output)
 
 
 if __name__ == "__main__":
-	filename = "db.pickle"
-	db = load(filename)
-	device = torch.device("cuda")
-	save(filename)
-	app.run(host='0.0.0.0', port=3305)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dbname', '-db', type=str, default = 'db.pickle')
+    parser.add_argument('--port', '-p', type=int, default = 3305)
+    parser.add_argument('--ip', '-i', type=str, default = '0.0.0.0')
+    parser.add_argument('--path_generator', '-pg', type=str, default = 'DialoGPT/output')
+    parser.add_argument('--path_ranker', '-pr', type=str, default = "DialogRPT/restore/ensemble.yml")
+    parser.add_argument('--topk', type=int, default=3)
+    parser.add_argument('--beam', type=int, default=3)
+    parser.add_argument('--wt_ranker', type=float, default=0.4)
+    parser.add_argument('--topp', type=float, default=0.8)
+    parser.add_argument('--max_t', type=int, default=15)
+    parser.add_argument('--cpu', action='store_true', help='enables CUDA training')
+    args = parser.parse_args()
+    
+    db = load(args.dbname)
+    sherlockModel = getIntegrated(args.path_ranker, args.path_generator, args.cpu)
+    params = {'topk': args.topk, 'beam': args.beam, 'topp': args.topp, 'max_t':args.max_t}
+    save(db, args.dbname)
+    
+    app.run(host=args.ip, port=args.port)
