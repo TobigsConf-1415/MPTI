@@ -11,7 +11,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from train_ironman import SPECIAL_TOKENS, build_input_from_segments, add_special_tokens_
+from TransferTransfo.train_ironman import SPECIAL_TOKENS, build_input_from_segments, add_special_tokens_
 from utils import load, save, nameFromDB, toResponse, EOS, WELCOME, REGISTER, CAPITAL, PERSONALTXT
 from DialogRPT.src.dialogRPT import getIntegrated
 
@@ -93,22 +93,10 @@ def sample_sequence(personality, history, tokenizer, model, current_output=None)
     return current_output
 
 
-
-tokenizer_ironman = GPT2Tokenizer.from_pretrained('default_gpt2')
-model_ironman = GPT2LMHeadModel.from_pretrained('default_gpt2')
-model_ironman.to("cuda")
-add_special_tokens_(model_ironman, tokenizer_ironman)
-
-personality = [tokenizer_ironman.encode(text) for text in PERSONALTXT]
-rule_based_df = pd.read_json('rule_based_df.json')
-vectorizer = TfidfVectorizer()
-tfidf = vectorizer.fit_transform(rule_based_df['question']).toarray()
-
 def response_ironman(inputs: str):
     
     input_vec = vectorizer.transform([inputs])
     similarity = cosine_similarity(input_vec, tfidf)[0]
-    
     if max(similarity) > 0.5 :
         return rule_based_df['answer'][argmax(similarity)]
     else:
@@ -148,6 +136,8 @@ if __name__ == "__main__":
     parser.add_argument('--ip', '-i', type=str, default = '0.0.0.0')
     parser.add_argument('--path_generator', '-pg', type=str, default = 'DialoGPT/output')
     parser.add_argument('--path_ranker', '-pr', type=str, default = "DialogRPT/restore/ensemble.yml")
+    parser.add_argument('--path_transfo', '-pt', type=str, default = "TransferTransfo/default_gpt2")
+    parser.add_argument('--path_rule', type=str, default = "TransferTransfo/rule_based_df.json")
     parser.add_argument('--topk', type=int, default=3)
     parser.add_argument('--beam', type=int, default=3)
     parser.add_argument('--wt_ranker', type=float, default=0.4)
@@ -156,8 +146,20 @@ if __name__ == "__main__":
     parser.add_argument('--cpu', action='store_true', help='enables CUDA training')
     args = parser.parse_args()
     
+    cuda = False if args.cpu else torch.cuda.is_available()
+    tokenizer_ironman = GPT2Tokenizer.from_pretrained(args.path_transfo)
+    model_ironman = GPT2LMHeadModel.from_pretrained(args.path_transfo)
+    device = torch.device('cuda' if cuda else 'cpu')
+    model_ironman.to(device)
+    add_special_tokens_(model_ironman, tokenizer_ironman)
+    personality = [tokenizer_ironman.encode(text) for text in PERSONALTXT]
+    rule_based_df = pd.read_json(args.path_rule)
+    vectorizer = TfidfVectorizer()
+    tfidf = vectorizer.fit_transform(rule_based_df['question']).toarray()
+
+    
     db = load(args.dbname)
-    sherlockModel = getIntegrated(args.path_ranker, args.path_generator, args.cpu)
+    sherlockModel = getIntegrated(args.path_ranker, args.path_generator, cuda)
     params = {'topk': args.topk, 'beam': args.beam, 'topp': args.topp, 'max_t':args.max_t}
     save(db, args.dbname)
     
