@@ -33,7 +33,7 @@ def main(args, df_trn, df_val):
         )
 
     # Setup CUDA, GPU & distributed training
-    device = torch.device("cuda")
+    device = torch.device("cpu" if args.no_cuda else "cuda")
     args.n_gpu = torch.cuda.device_count()
     args.device = device
 
