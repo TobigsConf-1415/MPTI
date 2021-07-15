@@ -19,7 +19,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-def response_sherlock(inputs: str, params, name = "NoName", history = ""):
+def resSherlock(inputs: str, params, name = "NoName", history = ""):
     history += inputs+ EOS
     if (history.count(EOS) > 4):
         history = history.split(EOS, maxsplit = 2)[-1]
@@ -42,7 +42,7 @@ def sherlock():
 		if name==None:
 			output = REGISTER
 		else:
-			output, history = response_sherlock(inputs, params, name, history)
+			output, history = resSherlock(inputs, params, name, history)
 			db[kakaoid] = (name, history)
 	return toResponse(output)
     

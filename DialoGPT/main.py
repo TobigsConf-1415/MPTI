@@ -2,8 +2,10 @@ import os
 import logging
 import glob
 import pandas as pd
+import argparse
+import torch
 
-from transformers import WEIGHTS_NAME, AutoConfig, AutoModelForCausalLM, AutoTokenizer,
+from transformers import WEIGHTS_NAME, AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 from train import train, evaluate
 from utils import load_and_cache_examples, set_seed, _sorted_checkpoints, _rotate_checkpoints
@@ -119,7 +121,7 @@ def main(args, df_trn, df_val):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--output', '-o', type=str, default = 'output')
+    parser.add_argument('--output_dir', '-o', type=str, default = 'output')
     parser.add_argument('--model_type', '-mt', type=str, default = 'gpt2')
     parser.add_argument('--model_name_or_path', '-mn', type=str, default = 'microsoft/DialoGPT-medium')
     parser.add_argument('--config_name', '-cn', type=str, default = 'microsoft/DialoGPT-medium')
