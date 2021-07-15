@@ -69,7 +69,7 @@ def main(args, logger, df_trn, df_val):
 
     # Training
     if args.do_train:
-        train_dataset = load_and_cache_examples(args, tokenizer, df_trn, df_val, evaluate=False)
+        train_dataset = load_and_cache_examples(args, logger, tokenizer, df_trn, df_val, evaluate=False)
 
         global_step, tr_loss = train(args, logger, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
