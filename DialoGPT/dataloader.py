@@ -2,6 +2,7 @@ from torch.utils.data import Dataset
 from transformers import PreTrainedTokenizer
 import os
 import pickle
+import torch
 
 def construct_conv(row, tokenizer, eos = True):
     flatten = lambda l: [item for sublist in l for item in sublist]
@@ -10,7 +11,7 @@ def construct_conv(row, tokenizer, eos = True):
     return conv
 
 class ConversationDataset(Dataset):
-    def __init__(self, tokenizer: PreTrainedTokenizer, args, df, block_size=512):
+    def __init__(self, tokenizer: PreTrainedTokenizer, args, logger, df, block_size=512):
 
         block_size = block_size - (tokenizer.model_max_length - tokenizer.max_len_single_sentence)
 

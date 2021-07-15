@@ -1,13 +1,15 @@
 '''
-train,py
+train.py
 '''
-from typing import Tuple, Dict
+from typing import Tuple, Dict, List
 from transformers import PreTrainedModel, PreTrainedTokenizer, AdamW, get_linear_schedule_with_warmup
+import torch
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from torch.utils.data.distributed import DistributedSampler
 import logging
 from tqdm.notebook import tqdm, trange
 from torch.nn.utils.rnn import pad_sequence
+from utils import _rotate_checkpoints, set_seed, load_and_cache_examples
 import os
 
 try:
@@ -16,7 +18,7 @@ except ImportError:
     from tensorboardX import SummaryWriter
 
 
-def train(args, train_dataset, model: PreTrainedModel, tokenizer: PreTrainedTokenizer) -> Tuple[int, float]:
+def train(args, logger, train_dataset, model: PreTrainedModel, tokenizer: PreTrainedTokenizer) -> Tuple[int, float]:
     """ Train the model """
     if args.local_rank in [-1, 0]:
         tb_writer = SummaryWriter(args.output_dir)
@@ -190,7 +192,7 @@ def train(args, train_dataset, model: PreTrainedModel, tokenizer: PreTrainedToke
                     torch.save(args, os.path.join(output_dir, "training_args.bin"))
                     logger.info("Saving model checkpoint to %s", output_dir)
 
-                    _rotate_checkpoints(args, checkpoint_prefix)
+                    _rotate_checkpoints(args, logger, checkpoint_prefix)
 
                     torch.save(optimizer.state_dict(), os.path.join(output_dir, "optimizer.pt"))
                     torch.save(scheduler.state_dict(), os.path.join(output_dir, "scheduler.pt"))
@@ -210,11 +212,11 @@ def train(args, train_dataset, model: PreTrainedModel, tokenizer: PreTrainedToke
 
 # Evaluation of some model
 
-def evaluate(args, model: PreTrainedModel, tokenizer: PreTrainedTokenizer, df_trn, df_val, prefix="") -> Dict:
+def evaluate(args, logger, model: PreTrainedModel, tokenizer: PreTrainedTokenizer, df_trn, df_val, prefix="") -> Dict:
     # Loop to handle MNLI double evaluation (matched, mis-matched)
     eval_output_dir = args.output_dir
 
-    eval_dataset = load_and_cache_examples(args, tokenizer, df_trn, df_val, evaluate=True)
+    eval_dataset = load_and_cache_examples(args, logger, tokenizer, df_trn, df_val, evaluate=True)
     os.makedirs(eval_output_dir, exist_ok=True)
     args.eval_batch_size = args.per_gpu_eval_batch_size * max(1, args.n_gpu)
     # Note that DistributedSampler samples randomly

@@ -8,9 +8,9 @@ import torch
 from transformers import WEIGHTS_NAME, AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 from train import train, evaluate
-from utils import load_and_cache_examples, set_seed, _sorted_checkpoints, _rotate_checkpoints
+from utils import load_and_cache_examples, set_seed, _sorted_checkpoints
 
-def main(args, df_trn, df_val):
+def main(args, logger, df_trn, df_val):
     
     if args.should_continue:
         sorted_checkpoints = _sorted_checkpoints(args)
@@ -71,7 +71,7 @@ def main(args, df_trn, df_val):
     if args.do_train:
         train_dataset = load_and_cache_examples(args, tokenizer, df_trn, df_val, evaluate=False)
 
-        global_step, tr_loss = train(args, train_dataset, model, tokenizer)
+        global_step, tr_loss = train(args, logger, train_dataset, model, tokenizer)
         logger.info(" global_step = %s, average loss = %s", global_step, tr_loss)
 
     # Saving best-practices: if you use save_pretrained for the model and tokenizer, you can reload them using from_pretrained()
@@ -112,7 +112,7 @@ def main(args, df_trn, df_val):
 
             model = AutoModelForCausalLM.from_pretrained(checkpoint)
             model.to(args.device)
-            result = evaluate(args, model, tokenizer, df_trn, df_val, prefix=prefix)
+            result = evaluate(args, logger, model, tokenizer, df_trn, df_val, prefix=prefix)
             result = dict((k + "_{}".format(global_step), v) for k, v in result.items())
             results.update(result)
 
@@ -161,4 +161,4 @@ if __name__ == "__main__":
     
     trn_df = pd.read_csv(args.path_train)
     val_df = pd.read_csv(args.path_validation)
-    main(args, trn_df, val_df)
+    main(args, logger, trn_df, val_df)

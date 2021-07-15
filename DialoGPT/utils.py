@@ -9,8 +9,8 @@ import torch
 from dataloader import ConversationDataset
 from typing import List
 
-def load_and_cache_examples(args, tokenizer, df_trn, df_val, evaluate=False):
-    return ConversationDataset(tokenizer, args, df_val if evaluate else df_trn)
+def load_and_cache_examples(args, logger, tokenizer, df_trn, df_val, evaluate=False):
+    return ConversationDataset(tokenizer, args, logger, df_val if evaluate else df_trn)
 
 
 def set_seed(args):
@@ -39,7 +39,7 @@ def _sorted_checkpoints(args, checkpoint_prefix="checkpoint", use_mtime=False) -
     return checkpoints_sorted
 
 
-def _rotate_checkpoints(args, checkpoint_prefix="checkpoint", use_mtime=False) -> None:
+def _rotate_checkpoints(args, logger, checkpoint_prefix="checkpoint", use_mtime=False) -> None:
     if not args.save_total_limit:
         return
     if args.save_total_limit <= 0:
