@@ -79,8 +79,9 @@ python demo.py
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/ltnalsxl"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>Sumin Lee</b></sub></td>
-    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>Junhyeok Jo</b></sub></td>
-    <td align="center"><a href="https://github.com/hbjk0305"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>JinKyeong Hwangbo</b></sub></td>
+    <td align="center"><a href="https://github.com/ltnalsxl"><img src="https://user-images.githubusercontent.com/68283760/125949586-bcf6297e-4840-4b0d-8eda-bad8b90d54b1.jpg" width="200" height="200"><br /><sub><b>Sumin Lee</b></sub></td>
+    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68283760/125949803-35096c63-f180-4582-afb9-3ff717814544.jpg" width="200" height="200"><br /><sub><b>Junhyeok Jo</b></sub></td>
+    <td align="center"><a href="https://github.com/hbjk0305"><img src="https://user-images.githubusercontent.com/68283760/125949229-81d9fad7-aba3-4754-af14-342ca9e22d7e.jpg"
+ width="200" height="200"><br /><sub><b>JinKyeong Hwangbo</b></sub></td>
   </tr>
 </table>
