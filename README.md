@@ -80,7 +80,7 @@ python demo.py
 <table>
   <tr>
     <td align="center"><a href="https://github.com/ltnalsxl"><img src="https://user-images.githubusercontent.com/68283760/125949586-bcf6297e-4840-4b0d-8eda-bad8b90d54b1.jpg" width="200" height="200"><br /><sub><b>Sumin Lee</b></sub></td>
-    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68625698/125951568-a6a08603-b5b0-4230-8a04-5cc80641cab4.jpg" width="200" height="200"><br /><sub><b>Junhyeok Jo</b></sub></td>
+    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68625698/125951568-a6a08603-b5b0-4230-8a04-5cc80641cab4.jpg" width="200" height="200"><br /><sub><b>Junhyeok o</b></sub></td>
     <td align="center"><a href="https://github.com/hbjk0305"><img src="https://user-images.githubusercontent.com/68283760/125949229-81d9fad7-aba3-4754-af14-342ca9e22d7e.jpg"
  width="200" height="200"><br /><sub><b>JinKyeong Hwangbo</b></sub></td>
   </tr>
