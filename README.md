@@ -41,7 +41,8 @@ python main.py
 ```
 
 ```
-TransferTransfo 학습 코드를 넣어주세요
+cd TransferTransfo
+python train.py
 ```
 
 ### 3. Inference
