@@ -71,7 +71,7 @@ python demo.py
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/Seyoung-Jung"><img src="https://user-images.githubusercontent.com/68283760/125950266-fa88da58-3ae2-4bca-a9cb-b100590ce4ea.jpg" width="200" height="200"><br /><sub><b>Seyeong Jung</b></sub></td>
+    <td align="center"><a href="https://github.com/Seyoung-Jung"><img src="https://user-images.githubusercontent.com/68625698/125951458-637a621f-e823-4b96-95d6-1a5cc62b3714.jpg" width="200" height="200"><br /><sub><b>Seyeong Jung</b></sub></td>
     <td align="center"><a href="https://github.com/Jeong-JaeYoon"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>Jaeyoon Jeong</b></sub></td>
     <td align="center"><a href="https://github.com/Taehee-K"><img src="https://user-images.githubusercontent.com/68283760/125950085-509a9fe9-4dac-48dc-a8a2-ded2a4bd9f63.jpg" width="200" height="200"><br /><sub><b>Taehee Kim</b></sub></td>
   </tr>
@@ -80,7 +80,7 @@ python demo.py
 <table>
   <tr>
     <td align="center"><a href="https://github.com/ltnalsxl"><img src="https://user-images.githubusercontent.com/68283760/125949586-bcf6297e-4840-4b0d-8eda-bad8b90d54b1.jpg" width="200" height="200"><br /><sub><b>Sumin Lee</b></sub></td>
-    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68283760/125949803-35096c63-f180-4582-afb9-3ff717814544.jpg" width="200" height="200"><br /><sub><b>Junhyeok Jo</b></sub></td>
+    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68625698/125951568-a6a08603-b5b0-4230-8a04-5cc80641cab4.jpg" width="200" height="200"><br /><sub><b>Junhyeok Jo</b></sub></td>
     <td align="center"><a href="https://github.com/hbjk0305"><img src="https://user-images.githubusercontent.com/68283760/125949229-81d9fad7-aba3-4754-af14-342ca9e22d7e.jpg"
  width="200" height="200"><br /><sub><b>JinKyeong Hwangbo</b></sub></td>
   </tr>
