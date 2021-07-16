@@ -3,7 +3,6 @@
 [![youtube](https://img.shields.io/badge/Youtube-Link-red)](https://www.youtube.com/watch?v=scf4inappd0)
 [![googledrive](https://img.shields.io/badge/report-Link-lightgrey)](https://drive.google.com/file/d/1nOoLmBtZVpWTP0ulrS6AYi4XEp5voJbB/view?usp=sharing)
 
-
 <p align="center"><img src="https://user-images.githubusercontent.com/68625698/125901312-d549f7e1-e7da-4b35-9ba7-aa4ddff46e40.PNG"></p>
 <br>
 
@@ -13,9 +12,14 @@ MPTI_Sherlock은 DialoGPT를 사용하여, MPTI_Ironman은 GPT2를 사용하여 
 
 서비스에 대한 자세한 내용은 그림 위의 링크를 참고해주세요.
 
-해당 모델은 각 시리즈의 대본을 바탕으로 구성되었으며, 상업적으로 이용할 의도가 전혀 없음을 밝힙니다.
-
 ## Data
+
+학습에 사용된 데이터는 대본을 바탕으로 구성되었으며, 상업적으로 시용할 의도가 전혀 없음을 밝힙니다:)
+
+각각의 챗봇에 사용한 데이터의 형식이 서로 다릅니다. 데이터의 형식은 개별 README를 통해 확인할 수 있습니다.
+
+[Sherlock]()
+[TransferTransfo]()
 
 
 
