@@ -1,7 +1,7 @@
 # 📽MPTI💬
 
-[![youtube]()
-[![googledrive](https://drive.google.com/file/d/16M2B50oNXQ6xA_wA7wd9vZaDsEUrHC8S/view?usp=sharing)
+[![youtube](https://img.shields.io/badge/Youtube-Link-red)]()
+[![googledrive](https://img.shields.io/badge/report-Link-lightgrey)](https://drive.google.com/file/d/16M2B50oNXQ6xA_wA7wd9vZaDsEUrHC8S/view?usp=sharing)
 
 <p align="center"><img src="https://user-images.githubusercontent.com/68625698/125901312-d549f7e1-e7da-4b35-9ba7-aa4ddff46e40.PNG"></p>
 <br>
