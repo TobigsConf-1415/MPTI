@@ -19,6 +19,7 @@ MPTI_Sherlock은 DialoGPT를 사용하여, MPTI_Ironman은 GPT2를 사용하여 
 각각의 챗봇에 사용한 데이터의 형식이 서로 다릅니다. 데이터의 형식은 개별 README를 통해 확인할 수 있습니다.
 
 [Sherlock]()
+<br>
 [TransferTransfo]()
 
 
