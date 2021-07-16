@@ -51,14 +51,14 @@ python demo.py
 
 ## Result
 
-<img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG" width="600">
+<img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG" width="800">
 <br>
 
 ## Demo
 
 | Sherlock | Iron Man |
 |---|---|
-|<img src="images/sherlock_sample.gif" width="300" height="600">|<img src="images/ironman_sample.gif" width="300" height="800">|
+|<img src="images/sherlock_sample.gif" width="300" height="600">|<img src="images/ironman_sample.gif" width="300" height="600">|
 <br>
 
 ## Reference
