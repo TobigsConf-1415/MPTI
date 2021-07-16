@@ -1,0 +1,28 @@
+# see model.py/JointScorer.core for details
+# the `prior` score is the weighted average of `human_vs_rand` and `human_vs_machine` predictions, 
+# and `cond` is the weighted average of `updown`, `depth`and `width` predictions. 
+# The final score is the product of `prior` score and `cond` score
+
+prior:
+  
+  - name: human_vs_rand
+    wt: 0.5
+    path: DialogRPT/restore/human_vs_rand.pth
+
+    # - name: human_vs_machine
+    #wt: 0.5
+    #path: restore/human_vs_machine.pth
+
+cond:
+
+  - name: updown
+    wt: 1
+    path: DialogRPT/restore/updown.pth
+
+    # - name: depth
+    #wt: 0.48
+    #path: restore/depth.pth
+
+    # - name: width
+    #wt: -0.5
+    #path: restore/width.pth
