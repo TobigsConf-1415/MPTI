@@ -14,7 +14,7 @@
 ## Demo
 | Sherlock | Iron Man |
 |---|---|
-|<img src="images/sherlock_sample.gif">|<img src="images/ironman_sample.gif">|
+|<img src="images/sherlock_sample.gif" width="300" height="600">|<img src="images/ironman_sample.gif" width="300" height="600">|
 
 
 ## Contributor 🕵️‍♂️
