@@ -51,7 +51,7 @@ python demo.py
 
 ## Result
 
-<p align="center"><img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG" width="600"></p>
 <br>
 
 ## Demo
