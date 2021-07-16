@@ -6,6 +6,7 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/68625698/125901312-d549f7e1-e7da-4b35-9ba7-aa4ddff46e40.PNG"></p>
 <br>
+
 **MPTI**는 **Meet Persona Through AI**의 줄임말로 영화 속 캐릭터와의 대화형 챗봇 서비스입니다.
 
 MPTI_Sherlock은 DialoGPT를 사용하여, MPTI_Ironman은 GPT2를 사용하여 만들었습니다.
