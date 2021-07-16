@@ -18,17 +18,36 @@ MPTI_Sherlock은 DialoGPT를 사용하여, MPTI_Ironman은 GPT2를 사용하여 
 
 각각의 챗봇에 사용한 데이터의 형식이 서로 다릅니다. 데이터의 형식은 개별 README를 통해 확인할 수 있습니다.
 
-[Sherlock]()
-<br>
-[TransferTransfo]()
-
-
+* [Sherlock]()
+* [TransferTransfo]()
 
 ## Usage
 
-모델의 용량 문제로 인해, 16GB 이상의 GPU 환경이나 Colab에서 GPU를 사용하기를 적극 권장합니다. [런타임] - [런타임 유형 변경] - [GPU]로 설정을 바꿔주세요.
+모델의 용량 문제로 인해, 16GB 이상의 GPU 환경이나 Colab에서 GPU를 사용하기를 적극 권장합니다. Colab 환경의 경우, [런타임] - [런타임 유형 변경] - [GPU]로 설정을 바꿔주세요.
 
+### 1. Installation
+```
+git clone https://github.com/TobigsConf-1415/MPTI.git
+cd MPTI
+pip install -r requirements.txt
+```
 
+### 2. Train
+
+각 모델을 아래의 순서대로 학습시켜주세요
+```
+cd DialoGPT
+python main.py
+```
+
+```
+TransferTransfo 학습 코드를 넣어주세요
+```
+
+### 3. Inference
+```
+python demo.py
+```
 
 ## Result
 
@@ -41,6 +60,9 @@ MPTI_Sherlock은 DialoGPT를 사용하여, MPTI_Ironman은 GPT2를 사용하여 
 |---|---|
 |<img src="images/sherlock_sample.gif" width="300" height="600">|<img src="images/ironman_sample.gif" width="300" height="600">|
 <br>
+
+## Reference
+이건 어떻게 할까...?
 
 ## Contributor 🕵️‍♂️
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
