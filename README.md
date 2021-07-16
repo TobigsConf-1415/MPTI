@@ -42,7 +42,7 @@ python main.py
 
 ```
 cd TransferTransfo
-python train.py --model_checkpoint 'gpt2'
+python train.py
 ```
 
 ### 3. Inference
