@@ -10,7 +10,8 @@
 
 
 ## Result
-<p align="center"><img src="https://user-images.githubusercontent.com/68625698/125900669-e427e7fd-fbcf-4b8a-af5f-a9556c76c9a3.PNG"></p>
+
+<p align="center"><img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG"></p>
 <br>
 
 ## Demo
@@ -34,8 +35,8 @@
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/ltnalsxl"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="150" height="150"><br /><sub><b>Sumin Lee</b></sub></td>
-    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="150" height="150"><br /><sub><b>Junhyeok Jo</b></sub></td>
-    <td align="center"><a href="https://github.com/hbjk0305"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="150" height="150"><br /><sub><b>JinKyeong Hwangbo</b></sub></td>
+    <td align="center"><a href="https://github.com/ltnalsxl"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>Sumin Lee</b></sub></td>
+    <td align="center"><a href="https://github.com/Junhyeok1015"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>Junhyeok Jo</b></sub></td>
+    <td align="center"><a href="https://github.com/hbjk0305"><img src="https://user-images.githubusercontent.com/68625698/125892690-46621db4-d033-4fa3-a320-eceb52610eb8.jpg" width="200" height="200"><br /><sub><b>JinKyeong Hwangbo</b></sub></td>
   </tr>
 </table>
