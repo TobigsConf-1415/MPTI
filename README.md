@@ -63,7 +63,13 @@ python demo.py
 <br>
 
 ## Reference
-* Golsun, DialogRPT, 2020, [https://github.com/golsun/DialogRPT]
+* Golsun, DialogRPT, 2020, https://github.com/golsun/DialogRPT
+* HuggingFace, transfer-learning-conv-ai, 2020, https://github.com/huggingface/transfer-learning-conv-ai
+* Wolf, T., Sanh, V., Chaumond, J., & Delangue, C. (2019). Transfertransfo: A transfer learning approach 
+for neural network based conversational agents.
+* Zhang, Y., Sun, S., Galley, M., Chen, Y. C., Brockett, C., Gao, X., ... & Dolan, B. (2019). Dialogpt: Large-scale generative pre-training for conversational response generation.
+* Thomas Wolf, How to build a State-of-the-Art Conversational AI with Transfer Learning, 2019, https://medium.com/huggingface/how-to-build-a-state-of-the-art-conversational-ai-with-transfer-learning-2d818ac26313
+* https://towardsdatascience.com/make-your-own-rick-sanchez-bot-with-transformers-and-dialogpt-fine-tuning-f85e6d1f4e30
 
 ## Contributor 🕵️‍♂️
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
