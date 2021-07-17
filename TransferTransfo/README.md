@@ -7,7 +7,7 @@ Meet Persona Through AI
 
 ## Data format
 #### 구체적인 전처리 방법은 영상과 sample로 올려둔 데이터를 확인해주세요.
-![data_presentation](https://user-images.githubusercontent.com/63901494/126024999-46c550f1-169c-45c8-b079-342f91ef1648.png)
+![ironman_data](https://user-images.githubusercontent.com/63901494/126025433-948e19d1-48a2-4af8-b101-751772dc7b23.jpg)
 <br>
 * input으로 persona가 들어가기 때문에 다양한 persona와 대화를 한 데이터가 필요합니다.
 * 해당 모델을 학습시킬 시 huggingface에서 해당 모델용으로 공개한 데이터셋을 활용하였습니다.
@@ -30,3 +30,6 @@ Meet Persona Through AI
 ```
 
 ## TransferTransfo
+![ironman_model1](https://user-images.githubusercontent.com/63901494/126025511-d5931657-287a-4cbd-a260-3339c494ff46.jpg)
+![ironman_model2](https://user-images.githubusercontent.com/63901494/126025512-f88e7e9f-f6a0-4a58-a0b1-bf6b735b180f.jpg)
+![ironman_model3](https://user-images.githubusercontent.com/63901494/126025514-f756decd-5d22-47d0-8f2f-d9e7c7862acc.jpg)
