@@ -19,7 +19,7 @@ MPTI_Sherlock은 DialoGPT를 사용하여, MPTI_Ironman은 GPT2를 사용하여 
 각각의 챗봇에 사용한 데이터의 형식이 서로 다릅니다. 데이터의 형식은 개별 README를 통해 확인할 수 있습니다.
 
 * [Sherlock](https://github.com/TobigsConf-1415/MPTI/tree/main/DialoGPT)
-* [TransferTransfo](https://github.com/TobigsConf-1415/MPTI/tree/main/TransferTransfo)
+* [Iron Man](https://github.com/TobigsConf-1415/MPTI/tree/main/TransferTransfo)
 
 ## Usage
 
@@ -52,15 +52,13 @@ python demo.py
 
 ## Result
 
-<img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG" width="800">
-<br>
+<img src="https://user-images.githubusercontent.com/68625698/125901038-09626877-2371-423e-8533-bbec6a1880f2.PNG" width="800"><br>
 
 ## Demo
 
 | Sherlock | Iron Man |
 |---|---|
 |<img src="images/sherlock_sample.gif" width="300" height="600">|<img src="images/ironman_sample.gif" width="300" height="600">|
-<br>
 
 ## Reference
 * Golsun, DialogRPT, 2020, https://github.com/golsun/DialogRPT
