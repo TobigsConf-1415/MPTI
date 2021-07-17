@@ -1,7 +1,7 @@
 # MPTI - Iron Man🤖
 Meet Persona Through AI
 
-해당 모델은 MPTi_Ironman 챗봇을 만들 때 사용한 모델입니다. 
+해당 모델은 MPTI_Ironman 챗봇을 만들 때 사용한 모델입니다. 
 
 데이터 포맷만 맞춰서 모델을 학습시키면 챗봇에 Ironman이 아닌 다른 페르소나도 입힐 수 있습니다:)
 
