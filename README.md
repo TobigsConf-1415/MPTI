@@ -63,7 +63,7 @@ python demo.py
 <br>
 
 ## Reference
-이건 어떻게 할까...?
+* Golsun, DialogRPT, 2020, [https://github.com/golsun/DialogRPT]
 
 ## Contributor 🕵️‍♂️
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
