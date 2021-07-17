@@ -42,6 +42,7 @@ python main.py
 
 ```
 cd TransferTransfo
+python -m spacy download en
 python train.py
 ```
 
