@@ -51,7 +51,7 @@ torch==1.6.0
 tqdm==4.48.2
 transformers==4.8.2
 typing-extensions==3.10.0.0
-urllib3==1.25.10
+urllib3==1.26.5
 websocket-client==1.1.0
 Werkzeug==2.0.1
 wincertstore==0.2
